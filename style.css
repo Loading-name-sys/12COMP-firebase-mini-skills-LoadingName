@@ -1,0 +1,14 @@
+/* style.css  Written by ????   2021                          */
+html, body {
+  background-color: rgb(100, 100, 100);
+  margin: 0;
+  padding: 0;
+  font-family: tahoma;
+  font-size: 10px;
+  color: black;
+}
+
+canvas {
+  display: block;
+}
+/***********  END OF CSS **************************************/
