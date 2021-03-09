@@ -82,6 +82,8 @@ function fb_logout() {
 function fb_writeRec(_path, _key, _data) { 
     console.log('fb_WriteRec: path= ' + _path + '  key= ' + _key +
                  '  data= ' + _data.name + '/' + _data.score);
+	
+	firebase.database().ref(_path + '/' + _key).set(_data);
   
 }
 

@@ -8,7 +8,7 @@ const NEXTLINE = 30;
 
 /*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
 // database variables
-var DETAILS = "?????";      //<== INSERT YOUR FIREBASE PATH NAME HERE
+var DETAILS = "userDetails";      //<== INSERT YOUR FIREBASE PATH NAME HERE
 
 var loginStatus = ' ';
 var readStatus  = ' ';
