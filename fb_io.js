@@ -93,9 +93,40 @@ function fb_writeRec(_path, _key, _data) {
 // Input:  path to read from and where to save it
 // Return:
 /**************************************************************/
-function fb_readAll(_path) {
+function fb_readAll(_path, _data) {
   console.log('fb_readAll: path= ' + _path);
+	readStatus = "waiting";
+	firebase.database().ref(_path).once("value", gotRecord, readErr);
 
+	function gotRecord(snapshot){
+		if(snapshot.val() == null){
+			readStatus = "no record";
+
+		}
+		else {
+			
+			readStatus = "Ok";
+			let dbData	= snapshot.val();
+			console.log(dbData);
+			let dbKeys = Object.keys(dbData);
+			console.log(dbKeys);
+			let key = dbKeys[0];
+			console.log (dbData[key]);
+
+			for (i=0; i < dbKeys.length; i++){
+				let key = dbKeys[i];
+				_data.push({
+					name:  dbData[key].name,
+					score: dbData[key].score
+				});
+			}
+		}
+	}
+
+	function readErr(error){
+		readStatus = "Fail";
+		console.log (error);
+	}
 }
 
 /**************************************************************/
@@ -107,6 +138,23 @@ function fb_readAll(_path) {
 function fb_readRec(_path, _key) {	
     console.log('fb_readRec: path= ' + _path + '  key= ' + _key);
 
+	readStatus = "waiting";
+	firebase.database().ref(_path + "/" + _key).once("value", gotRecord, readErr);
+
+	function gotRecord(snapshot){
+		if(snapshot.val() == null){
+			readStatus = "no record";
+		}
+		else {
+			readStatus = "Ok";
+			console.log(snapshot.val() );
+		}
+	}
+
+	function readErr(error){
+		readStatus = "Fail";
+		console.log (error);
+	}
 }
 
 /**************************************************************/
